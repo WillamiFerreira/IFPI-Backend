@@ -4,54 +4,50 @@ let filmes = []
 let editing = false
 let filme_id
 
+
 function resetar_formulario() {
-    const form_filme = document.getElementById('form-filme')
-    form_filme.reset()
+    const form_filme = document.getElementById('form-filme') /*captura o formulário no html */
+    form_filme.reset() /*reseta todos os valores do input */
 
-    const btn_confirmar = document.getElementById('btn-confirmar')
-    btn_confirmar.value = 'Adicionar Filme'
+    const btn_confirmar = document.getElementById('btn-confirmar') /*Captura o botão confirmar...*/
+    btn_confirmar.value = 'Adicionar Filme'/*e reseta o valor novamente para adicionar filme*/
 
-    editing = false
+    editing = false /**Retorna o valor da variável para false */
 }
 
 function atualizar_tela(){
     // Manipulacao de DOM
-    const ul_filmes = document.getElementById('list-filme')
-    ul_filmes.innerHTML = []
+    const ul_filmes = document.getElementById('list-filme') /**Captura a lista de filmes do html */
+    ul_filmes.innerHTML = [] /*zera essa lista(somente apaga os itens li da página)*/
 
-    for(let filme of filmes){
-        const item = document.createElement('li')
-        item.classList.add("item")
-        // const label = '#'+filme.id+' - '+filme.nome + ' - ' + filme.genero
-        const label = `${filme.id} - ${filme.nome}`
+    for(let filme of filmes){ /*Para cada filme da lista de filmes... */
+        const item = document.createElement('li') /*cria um novo elemento li*/
+        item.classList.add("item")/*adicona a class item*/
+        const label = `${filme.id} - ${filme.nome}`/*Cria uma variável com id e nome do filme corrente*/
 
-        const btn_editar = document.createElement('a') // <a></a>
-        btn_editar.innerText = 'Editar' // <a>Editar</a>
-        btn_editar.href = '#'
+        const btn_editar = document.createElement('a') //cria um link
+        btn_editar.innerHTML = '<img src="images/lapis.png" style="width:18px">' //E adiciona uma imagem 
+        btn_editar.href = '#' //adicoona um atributo href
         
-        btn_editar.onclick = (event) => {
-            event.preventDefault()
+        btn_editar.onclick = (event) => { //adiciona um lestener de clique para o botão de editar
+            event.preventDefault() 
 
             // 1. Preencher o Formulário
-            preencher_formulario(filme)
+            preencher_formulario(filme) 
             
             // 2. Mudar o Label do Botão para Atualizar
-            const btn_confirmar = document.getElementById('btn-confirmar')
-            btn_confirmar.value = 'Editar Filme'
+            const btn_confirmar = document.getElementById('btn-confirmar') //captura o botão confirma
+            btn_confirmar.value = 'Editar Filme' //muda o nome do botão
 
             // 3. Salvar um Estado Global se está editando
             editing = true
             filme_id = filme.id
         }
 
-        const btn_remover = document.createElement('a') // <a></a>
-        btn_remover.innerText = 'Remover' // <a>Editar</a>
+        const btn_remover = document.createElement('a') // cria um link
+        btn_remover.innerHTML = '<img src="images/lixo.png" style="width:18px">' // <a>Editar</a>
         btn_remover.href = '#'
-        const espaco = document.createElement('span')
-        espaco.innerText = ' '
         btn_remover.onclick = async (event) => {
-            // alert(`Remover o Filme ${filme.nome}!!`)
-            // chamar API método DELETE passando o ID URL
             event.preventDefault()
             const confirmou = confirm(`Deseja mesmo remover o Filme: ${filme.nome}`)
 
@@ -84,10 +80,10 @@ function preencher_formulario(filme){
     const form_filme = document.querySelector('.inputs')
 
     const inputs = form_filme.children
-    inputs[0].value = filme.nome
-    inputs[1].value = filme.genero
-    inputs[2].value = filme.ano
-    inputs[3].value = filme.duracao
+    inputs[1].value = filme.nome
+    inputs[3].value = filme.genero
+    inputs[5].value = filme.ano
+    inputs[7].value = filme.duracao
 }
 
 async function carregar_filmes(){

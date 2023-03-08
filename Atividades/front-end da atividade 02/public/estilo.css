@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
 *{
     box-sizing: border-box;
     padding: 0px;
@@ -117,10 +116,11 @@ div.glass-card{
     background-color: white;
     border-radius: 8px;
     padding: 10px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.276);
 }
 
 .item-buttons{
     display: flex;
-    column-gap: 4px;
+    column-gap: 12px;
 }
