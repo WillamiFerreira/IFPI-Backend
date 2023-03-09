@@ -1,6 +1,5 @@
 from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel
-
 from modules.utils import formatar_valores, not_found_error_message
 
 app = FastAPI()
@@ -18,34 +17,28 @@ tarefas: list[Tarefa] = []
 
 @app.post("/tarefa", status_code=status.HTTP_201_CREATED)
 def adicionar_tarefa(tarefa: Tarefa):
-    """Função que adiciona uma nova tarefa à lista"""
-    #listas que guardam os valores disponíveis para níveis e prioridades das tarefas.
     niveis = [1, 3, 5, 8]
     prioridades = [1, 2, 3]
     
-    if tarefa.nivel not in niveis: #Esse if verifica se o nível definido pelo user é válido.
+    if tarefa.nivel not in niveis:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f'nível indisponível. escolha 1, 3, 5 ou 8')
         
-    if tarefa.prioridade not in prioridades: #Esse if verifica se a prioridade definida pelo user é válida.
+    if tarefa.prioridade not in prioridades:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"prioridade indisponível. Escolha 1, 2, ou 3")
     
-    tarefa.id = len(tarefas) #Uso a função len() com a lista tarefas com argumento para atribuir um ID para a tarefa.
-    
+    tarefa.id = len(tarefas)
     tarefas.append(formatar_valores(tarefa))
 
-    return tarefa
 
 @app.get("/tarefa")
 def listar_tarefas():
-    """Retorna todas as tarefas registradas"""
     return tarefas
 
 
 @app.get("/tarefa/{tarefa_id}")
 def detalhar_tarefa(tarefa_id: int):
-    """Obtém uma tarefa específica a partir do ID"""
     for trf in tarefas:
         if trf.id == tarefa_id:
             return trf
@@ -55,7 +48,6 @@ def detalhar_tarefa(tarefa_id: int):
 
 @app.put("/tarefa/to-em-andamento/{tarefa_id}", status_code=status.HTTP_204_NO_CONTENT)
 def marcar_em_andamento(tarefa_id: int):
-    """Modifica a situação de uma tarefa para 'Em andamento' se sua situação atual for 'nova' ou 'pendente'. """
     for trf in tarefas:
         if trf.id == tarefa_id:
             if trf.situacao == "Em andamento":
@@ -65,7 +57,7 @@ def marcar_em_andamento(tarefa_id: int):
                 trf.situacao = "Em andamento"
                 return trf
             else:
-                raise HTTPException(status_code=status.HTTP_409_CONFLICT, #Retorna um erro 409 (erro de conflito) se não for possível mudar a situação da tarefa.
+                raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                                     detail= 'A tarefa não está em situação de nova ou pendente.')
 
     not_found_error_message(tarefa_id)
@@ -73,7 +65,6 @@ def marcar_em_andamento(tarefa_id: int):
 
 @app.put('/tarefa/to-pendente/{tarefa_id}', status_code=status.HTTP_204_NO_CONTENT)
 def marcar_como_pendente(tarefa_id : int):
-    """Modifica a situação da tarefa para 'pendente' se sua situação atual for 'nova' ou 'em andamento'. """
     for trf in tarefas:
         if trf.id == tarefa_id:
             if trf.situacao == "Pendente":
@@ -91,7 +82,6 @@ def marcar_como_pendente(tarefa_id : int):
 
 @app.put('/tarefa/cancelar/{tarefa_id}', status_code=status.HTTP_204_NO_CONTENT)
 def cancelar_tarefa(tarefa_id : int):
-    """Modifica a situação da tarefa pra 'cancelada' pelo ID."""
     for trf in tarefas:
         if trf.id == tarefa_id:
             if trf.situacao == 'Cancelada':
@@ -106,10 +96,9 @@ def cancelar_tarefa(tarefa_id : int):
     
 @app.get('/tarefa/ft-situacao/')
 def filtrar_por_situacao(situacao: str, start: int = 0, end: str = len(tarefas)+1):
-    """Retorna somente as tarefas que estão em um situação específica definia pelo user."""
     tarefas_selecionadas: list[Tarefa] = [] 
     situacao = situacao.capitalize()
-    situacao = situacao.replace("-", " ") #Como não é possível usar espaço em URLs, tive que usar o método replace() aqui.
+    situacao = situacao.replace("-", " ")
     
     for trf in tarefas:
         if trf.situacao == situacao:
@@ -117,14 +106,12 @@ def filtrar_por_situacao(situacao: str, start: int = 0, end: str = len(tarefas)+
 
     if len(tarefas_selecionadas) == 0: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                                           detail= f"Não há tarefas em situação de {situacao}.")
-    else: 
-        return tarefas_selecionadas
+                            detail= f"Não há tarefas em situação de {situacao}.")
+    else: return tarefas_selecionadas
 
 
 @app.get('/tarefa/ft-nivel-prioridade/')
 def filtrar_por_nivel_prioridade(nivel: int, prioridade: int, start: int = 0, end: int = len(tarefas)+1):
-    """Retorna somente as tarefas com um nível e prioridade especificado pelo user"""
     tarefas_selecionadas : list[Tarefa] = []
     for trf in tarefas:
         if trf.nivel == nivel and trf.prioridade == prioridade:
@@ -132,8 +119,7 @@ def filtrar_por_nivel_prioridade(nivel: int, prioridade: int, start: int = 0, en
         
     if len(tarefas_selecionadas) == 0: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                                           detail=f"Não existe tarefa com nível {nivel} e prioridade {prioridade}.")
-    else: 
-        return tarefas_selecionadas
+                            detail=f"Não existe tarefa com nível {nivel} e prioridade {prioridade}.")
+    else: return tarefas_selecionadas
     
     
