@@ -15,8 +15,6 @@ tarefas: list[Tarefa] = []
 
 
 def formatar_valores(tarefa):
-    """Função recebe um objeto Tarefa e modifica os valores string de seus atributos, fazendo
-    eles ficarem com a primeira letra maiúscula."""
     tarefa.descricao = tarefa.descricao.capitalize()
     tarefa.responsavel = tarefa.responsavel.capitalize()
     tarefa.situacao = tarefa.situacao.capitalize()
