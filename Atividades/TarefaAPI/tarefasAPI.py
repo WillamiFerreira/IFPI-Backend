@@ -121,5 +121,3 @@ def filtrar_por_nivel_prioridade(nivel: int, prioridade: int, start: int = 0, en
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Não existe tarefa com nível {nivel} e prioridade {prioridade}.")
     else: return tarefas_selecionadas
-    
-    
