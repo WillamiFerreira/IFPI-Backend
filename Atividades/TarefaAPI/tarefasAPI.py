@@ -30,6 +30,7 @@ def adicionar_tarefa(tarefa: Tarefa):
     
     tarefa.id = len(tarefas)
     tarefas.append(formatar_valores(tarefa))
+    return 'Tarefa adicionada com sucesso'
 
 
 @app.get("/tarefa")
@@ -55,7 +56,7 @@ def marcar_em_andamento(tarefa_id: int):
                                     detail= f'Tarefa com ID {tarefa_id} já está em andamento.')
             elif trf.situacao == "Nova" or trf.situacao == "Pendente":
                 trf.situacao = "Em andamento"
-                return trf
+                return
             else:
                 raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                                     detail= 'A tarefa não está em situação de nova ou pendente.')
@@ -72,7 +73,7 @@ def marcar_como_pendente(tarefa_id : int):
                                     detail= f'A tarefa com ID {tarefa_id} já está pendente.')
             elif trf.situacao == "Nova" or trf.situacao == "Em andamento":
                 trf.situacao = 'Pendente'
-                return trf
+                return
             else: 
                 raise HTTPException(status_code=status.HTTP_409_CONFLICT, 
                                     detail="A tarefa não está em situação de nova ou em andamento.")
@@ -89,7 +90,7 @@ def cancelar_tarefa(tarefa_id : int):
                                     detail= f'A tarefa com id {tarefa_id} já está cancelada')
             else:
                 trf.situacao = "Cancelada"
-                return trf
+                return
 
     not_found_error_message(tarefa_id)
     
