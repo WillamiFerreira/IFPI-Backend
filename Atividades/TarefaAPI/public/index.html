@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APTtasks</title>
 </head>
+
 <body>
+    <div class="add-task-cont">
+        <header>
+            <div>LOGO</div>
+        </header>
+        <div class="form-cont">
+            <form action="#">
+                <label>Description <br> <input type="text" name="task-desc" id="task-desc" autocomplete="off">
+                </label>
+                <label>Owner <br> <input type="text" name="task-owner" id="task-owner" autocomplete="off">
+                </label>
+                <label>Priority
+                    <span><label>1<input type="radio" name="priori-option" id="p1"></label></span>
+                    <span><label>2<input type="radio" name="priori-option" id="p2"></label></span>
+                    <span><label>3<input type="radio" name="priori-option" id="p3"></label></span>
+                </label>
+                <label>Level
+                    <span><label>1<input type="radio" name="level-option" id="l1"></label></span>
+                    <span><label>3<input type="radio" name="level-option" id="l3"></label></span>
+                    <span><label>5<input type="radio" name="level-option" id="l5"></label></span>
+                    <span><label>8<input type="radio" name="level-option" id="l8"></label></span>
+                </label>
+                <div class="buttons-container">
+                    <input type="reset" value="Clear" id="clear-btn">
+                    <input type="submit" value="Add new task" id="submit-btn">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="filter-bar-cont">
+        <div>
+            10 Tasks
+        </div>
+        <div>
+            <select>
+                <option value="Level" selected>Level</option>
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+            </select>
+            <select>
+                <option value="Priority" selected>Priority</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <input type="submit" value="Filtrar">
+        </div>
+    </div>
+    <div class="task-cont">
+        <div class="task-item">
+            <input type="checkbox" name="item-checked" id="item-checked">
+            <span>Task description will be here</span>
+            <span>1</span>
+            <span>8</span>
+            <span>new</span>
+            <span>Josh</span>
+            <span>
+                <a href="#">edit</a>
+                <a href="#">delete</a>
+            </span>
+        </div>
+        <div class="task-item">
+            <input type="checkbox" name="item-checked" id="item-checked">
+            <span>Task description will be here</span>
+            <span>2</span>
+            <span>1</span>
+            <span>pendent</span>
+            <span>Mariana</span>
+            <span>
+                <a href="#">edit</a>
+                <a href="#">delete</a>
+            </span>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
+
 </html>
