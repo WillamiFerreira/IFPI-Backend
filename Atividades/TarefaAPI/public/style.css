@@ -90,8 +90,7 @@ input[type="text"] {
     max-width: 850px;
     background-color: rgb(139, 139, 139);
     border-radius: 12px;
-    row-gap: 12px;
-    padding: 12px 24px;
+    row-gap: 0px;
 }
 
 .task-item {
@@ -103,9 +102,10 @@ input[type="text"] {
     border-radius: 12px;
     background-color: rgb(215, 215, 215);
     padding: 0 5px;
+    margin: 5px 10px;
 }
 
-.task-item span:last-of-type {
+.task-item div:last-of-type {
     display: flex;
     align-items: center;
     column-gap: 8px;
