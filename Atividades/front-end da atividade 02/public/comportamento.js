@@ -87,7 +87,7 @@ function preencher_formulario(filme){
 }
 
 async function carregar_filmes(){
-    console.log('API - Todos os filmes')
+    //console.log('API - Todos os filmes')
     const response = await fetch(baseURL)
 
     const status = response.status
@@ -123,8 +123,7 @@ function configurar_formulario(){
         const filme = {nome, genero, ano, duracao}
 
         console.log('Submeteu!!!')
-        // console.log(dados)
-        // console.log('Filme: ', filme)
+
         let url = baseURL
         let method = 'POST'
         let mensagem_ok = 'Filme Adicionado com sucesso!'

@@ -15,21 +15,22 @@
             <div>LOGO</div>
         </header>
         <div class="form-cont">
-            <form action="#">
-                <label>Description <br> <input type="text" name="task-desc" id="task-desc" autocomplete="off">
-                </label>
-                <label>Owner <br> <input type="text" name="task-owner" id="task-owner" autocomplete="off">
-                </label>
+            <form action="#" id="form-task">
+                <label for="task-desc">Description</label>
+                <input type="text" name="task-desc" id="task-desc" autocomplete="off">
+                <label for="task-owner">Owner </label>
+                <input type="text" name="task-owner" id="task-owner" autocomplete="off">
+
                 <label>Priority
-                    <span><label>1<input type="radio" name="priori-option" id="p1"></label></span>
-                    <span><label>2<input type="radio" name="priori-option" id="p2"></label></span>
-                    <span><label>3<input type="radio" name="priori-option" id="p3"></label></span>
+                    <span><label>1<input type="radio" name="priori-option" value="1" id="p1"></label></span>
+                    <span><label>2<input type="radio" name="priori-option" value="2" id="p2"></label></span>
+                    <span><label>3<input type="radio" name="priori-option" value="3" id="p3"></label></span>
                 </label>
                 <label>Level
-                    <span><label>1<input type="radio" name="level-option" id="l1"></label></span>
-                    <span><label>3<input type="radio" name="level-option" id="l3"></label></span>
-                    <span><label>5<input type="radio" name="level-option" id="l5"></label></span>
-                    <span><label>8<input type="radio" name="level-option" id="l8"></label></span>
+                    <span><label>1<input type="radio" name="level-option" value=1 id="l1"></label></span>
+                    <span><label>3<input type="radio" name="level-option" value=3 id="l3"></label></span>
+                    <span><label>5<input type="radio" name="level-option" value=5 id="l5"></label></span>
+                    <span><label>8<input type="radio" name="level-option" value=8 id="l8"></label></span>
                 </label>
                 <div class="buttons-container">
                     <input type="reset" value="Clear" id="clear-btn">
@@ -85,7 +86,7 @@
             </span>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
