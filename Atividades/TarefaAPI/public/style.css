@@ -40,7 +40,7 @@ input[type="text"] {
 .add-task-cont {
     width: 100%;
     max-width: 800px;
-    background-color: rgb(195, 195, 195);
+    background-color: #c3c3c3;
     margin: 50px auto;
     padding: 10px;
     border-radius: 12px;
@@ -72,13 +72,13 @@ input[type="text"] {
 }
 
 .filter-bar-cont div:first-child {
-    background-color: red;
+    background-color:#c3c3c3;
     border-radius: 12px;
     justify-content: center;
 }
 
 .filter-bar-cont div:nth-child(2) {
-    background-color: yellow;
+    background-color: #c3c3c3;
     border-radius: 12px;
     column-gap: 12px;
 }
@@ -89,13 +89,25 @@ input[type="text"] {
     margin: 0 auto;
     max-width: 850px;
     background-color: rgb(139, 139, 139);
-    border-radius: 12px;
+    border-radius: 0 0 12px 12px;
     row-gap: 0px;
+}
+
+.column-desc{
+        display: grid;
+        grid-template-columns:0.5fr 4fr 1fr 1fr 1fr 2fr 2fr;
+        height: 34px;
+        max-width: 850px;
+        margin: 0 auto;
+        align-items: center;
+        background-color: rgb(91, 91, 91);
+        font-size: 0.9em;
+        border-radius: 12px 12px 0 0 ;
 }
 
 .task-item {
     display: grid;
-    grid-template-columns: 0.5fr 5fr 1fr 1fr 1fr 2fr 2fr;
+    grid-template-columns: 0.5fr 4fr 1fr 1fr 1fr 2fr 2fr;
     height: 40px;
     column-gap: 10px;
     align-items: center;
