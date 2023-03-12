@@ -12,6 +12,7 @@ function filtrarTarefas() {
     const priority_filter = document.querySelector('#priority-filter');
 
     const filtrar_btn = document.querySelector('#filtrar-btn');
+    const remove_filter_btn = document.querySelector('#remove-filter-btn'); 
 
     filtrar_btn.onclick = () => {
         //obtendo o valor de level filtrado pelo user
@@ -27,24 +28,20 @@ function filtrarTarefas() {
         selectedTextP = Number(selectedTextP)
         selectedTextL = Number(selectedTextL)
 
-
-
-        console.log(typeof(selectedTextP));
-
-
-        atualizar_tela(selectedTextL, selectedTextP)
+        mostrarFiltrados(selectedTextL, selectedTextP)
     }
-
-
+    
+    remove_filter_btn.onclick = function(){
+        atualizar_tela()
+    }
 }
-
-function atualizar_tela(l = null, p = null) {
+function mostrarFiltrados(selectedTextL, selectedTextP) {
 
     var task_cont = document.querySelector('.task-cont');
     task_cont.innerHTML = []
-
+    
     for (let task of tasks) {
-        if (l == 'name' || null && p == 'name' || null) { //Entre se o user não tiver seleciona um filtro
+        if(task.nivel == selectedTextL && task.prioridade == selectedTextP) {
 
             const item = document.createElement('div')
             item.classList.add('task-item')
@@ -53,12 +50,12 @@ function atualizar_tela(l = null, p = null) {
                 var item_cell = document.createElement('div')
                 item.appendChild(item_cell)
                 item_cell.classList.add('task-cell')
-
+    
                 if (i == 0) {
                     var checkbox_bottom = document.createElement('input')
                     checkbox_bottom.type = 'checkbox'
                     item_cell.appendChild(checkbox_bottom)
-
+    
                 } else if (i == 1) {
                     item_cell.innerText = task.descricao;
                 } else if (i == 2) {
@@ -73,48 +70,52 @@ function atualizar_tela(l = null, p = null) {
                     item_cell.appendChild(buildButtons())
                 }
             }
-
+    
             task_cont.appendChild(item)
 
+        }
+    }
+}
 
-        } else { // se o user seleciona algum filtro
-            if (task.nivel == l || task.prioridade == p) {
+function atualizar_tela() {
 
-                const item = document.createElement('div')
-                item.classList.add('task-item')
+    var task_cont = document.querySelector('.task-cont');
+    task_cont.innerHTML = []
 
-                for (var i = 0; i < 7; ++i) {
-                    var item_cell = document.createElement('div')
-                    item.appendChild(item_cell)
-                    item_cell.classList.add('task-cell')
+    for (let task of tasks) { //Entre se o user não tiver seleciona um filtro
 
-                    if (i == 0) {
-                        var checkbox_bottom = document.createElement('input')
-                        checkbox_bottom.type = 'checkbox'
-                        item_cell.appendChild(checkbox_bottom)
+        const item = document.createElement('div')
+        item.classList.add('task-item')
 
-                    } else if (i == 1) {
-                        item_cell.innerText = task.descricao;
-                    } else if (i == 2) {
-                        item_cell.innerText = task.prioridade
-                    } else if (i == 3) {
-                        item_cell.innerText = task.nivel
-                    } else if (i == 4) {
-                        item_cell.innerText = task.situacao
-                    } else if (i == 5) {
-                        item_cell.innerText = task.responsavel
-                    } else {
-                        item_cell.appendChild(buildButtons())
-                    }
-                }
+        for (var i = 0; i < 7; ++i) {
+            var item_cell = document.createElement('div')
+            item.appendChild(item_cell)
+            item_cell.classList.add('task-cell')
 
-                task_cont.appendChild(item)
+            if (i == 0) {
+                var checkbox_bottom = document.createElement('input')
+                checkbox_bottom.type = 'checkbox'
+                item_cell.appendChild(checkbox_bottom)
+
+            } else if (i == 1) {
+                item_cell.innerText = task.descricao;
+            } else if (i == 2) {
+                item_cell.innerText = task.prioridade
+            } else if (i == 3) {
+                item_cell.innerText = task.nivel
+            } else if (i == 4) {
+                item_cell.innerText = task.situacao
+            } else if (i == 5) {
+                item_cell.innerText = task.responsavel
             } else {
-                console.log("Erro aqui")
+                item_cell.appendChild(buildButtons())
             }
         }
 
+        task_cont.appendChild(item)
+
     }
+
 }
 
 async function carregar_tarefas() {
