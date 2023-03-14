@@ -1,7 +1,7 @@
 from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from modules.utils import formatar_valores, not_found_error_message
+from TarefaAPI.Backend.modules.utils import formatar_valores, not_found_error_message
 
 app = FastAPI()
 

@@ -2,10 +2,16 @@ const baseURL = 'http://127.0.0.1:8000/tarefa'
 import {
     obterValorDoRadioButtons,
     buildButtons,
-    resetarForm
+    resetarForm,
+    
 } from "../modules/js_modules/utils.js";
 
 let tasks = [];
+
+function atualizarTarefa(){
+    
+}
+
 
 function filtrarTarefas() {
     const level_filter = document.querySelector('#level-filter');
@@ -35,6 +41,7 @@ function filtrarTarefas() {
         atualizar_tela()
     }
 }
+
 function mostrarFiltrados(selectedTextL, selectedTextP) {
 
     var task_cont = document.querySelector('.task-cont');
@@ -70,7 +77,7 @@ function mostrarFiltrados(selectedTextL, selectedTextP) {
                     item_cell.appendChild(buildButtons())
                 }
             }
-    
+            
             task_cont.appendChild(item)
 
         }
@@ -121,7 +128,6 @@ function atualizar_tela() {
 async function carregar_tarefas() {
     const response = await fetch(baseURL)
 
-    const status = response.status
     tasks = await response.json()
 
     atualizar_tela()
@@ -146,7 +152,6 @@ function configurar_formulario() {
             prioridade
         }
 
-
         const opcoes = {
             method: "POST",
             body: JSON.stringify(task),
@@ -157,7 +162,6 @@ function configurar_formulario() {
         const response = await fetch(baseURL, opcoes)
 
         if (response.status === 201) {
-            alert('Tarefa cadastrada com sucesso!')
             carregar_tarefas()
             resetarForm()
 
@@ -171,6 +175,7 @@ function app() {
     configurar_formulario()
     carregar_tarefas()
     filtrarTarefas()
+    atualizarTarefa()
 }
 
 
