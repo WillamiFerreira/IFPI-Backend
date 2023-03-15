@@ -1,16 +1,8 @@
 const baseURL = 'http://127.0.0.1:8000/tarefa'
-import {
-    obterValorDoRadioButtons,
-    buildButtons,
-    resetarForm,
-    
-} from "../modules/js_modules/utils.js";
+import { buildButtons, createEditBtnEventListener } from "./modules/buildButtons"; 
+import { obterValorDoRadioButtons, resetarForm } from "./modules/utils";
 
 let tasks = [];
-
-function atualizarTarefa(){
-    
-}
 
 
 function filtrarTarefas() {
