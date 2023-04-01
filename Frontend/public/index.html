@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APTtasks</title>
+</head>
+
+<body>
+    <div class="add-task-cont">
+        <header>
+            <div>LOGO</div>
+        </header>
+        <div class="form-cont">
+            <form action="#" id="form-task">
+                <label for="task-desc">Description</label>
+                <input type="text" name="task-desc" id="task-desc" autocomplete="off">
+                <label for="task-owner">Owner </label>
+                <input type="text" name="task-owner" id="task-owner" autocomplete="off">
+
+                <label>Priority
+                    <span><label>1<input type="radio" name="priori-option" value="1" id="p1"></label></span>
+                    <span><label>2<input type="radio" name="priori-option" value="2" id="p2"></label></span>
+                    <span><label>3<input type="radio" name="priori-option" value="3" id="p3"></label></span>
+                </label>
+                <label>Level
+                    <span><label>1<input type="radio" name="level-option" value=1 id="l1"></label></span>
+                    <span><label>3<input type="radio" name="level-option" value=3 id="l3"></label></span>
+                    <span><label>5<input type="radio" name="level-option" value=5 id="l5"></label></span>
+                    <span><label>8<input type="radio" name="level-option" value=8 id="l8"></label></span>
+                </label>
+                <div class="buttons-container">
+                    <input type="reset" value="Clear" id="clear-btn">
+                    <input type="submit" value="Add new task" id="submit-btn">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="filter-bar-cont">
+        <div>
+            10 Tasks
+        </div>
+        <div>
+            <select id="level-filter">
+                <option value="name">Level</option>
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+            </select>
+            <select id="priority-filter">
+                <option value="name">Priority</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <input id="filtrar-btn" type="submit" value="Filtrar">
+            <input id="remove-filter-btn" type="submit" value="Remover Filtro">
+        </div>
+    </div>
+    <div class="column-desc">
+        <p></p>
+        <p>Description</p>
+        <p>Priority</p>
+        <p>Level</p>
+        <p>Situation</p>
+        <p>Owner</p>
+    </div>
+    <div class="task-cont">
+    </div>
+    <script type="module" src="../src/script.js"></script>
+</body>
+
+</html>
