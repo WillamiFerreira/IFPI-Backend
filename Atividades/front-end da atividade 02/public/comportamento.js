@@ -114,12 +114,10 @@ function configurar_formulario(){
 
         event.preventDefault()
 
-        const dados = form_filme.children
-        const nome = dados[0].value
-        const genero = dados[1].value
-        const ano = Number(dados[2].value)
-        const duracao = Number(input_duracao.value)
-
+        const nome = document.querySelector('#nome').value
+        const genero = document.querySelector('#genero').value
+        const ano = document.querySelector('#ano').value
+        const duracao = document.querySelector('#duracao').value
         const filme = {nome, genero, ano, duracao}
 
         console.log('Submeteu!!!')
